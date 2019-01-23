@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 
-public class MainModel implements MvpContract.Model {
+public class MainModel implements MvpContract.DefaultMainModel {
 
 
     public List<Field> fields;
@@ -46,7 +46,7 @@ public class MainModel implements MvpContract.Model {
         mCompositeDisposable.dispose();
     }
 
-    public void loadRecords(final MvpContract.Presenter describePresenter) {
+    public void loadRecords(final MvpContract.DefaultMainPresenter describePresenter) {
 
 
         mCompositeDisposable.add(mApiService.requestRecordsSecondPart()
@@ -141,7 +141,7 @@ public class MainModel implements MvpContract.Model {
     List<Map<String, String>> mapReadyTODB;
     List<Map<String, String>> mapReadyFromDB;
 
-    private void parseQuery(JSONArray results, MvpContract.Presenter describePresenter, boolean b) {
+    private void parseQuery(JSONArray results, MvpContract.DefaultMainPresenter describePresenter, boolean b) {
         mapReadyTODB = new ArrayList<>();
 
         if (results != null) {
@@ -180,7 +180,7 @@ public class MainModel implements MvpContract.Model {
 
 
     @Override
-    public void loadDescribe(final MvpContract.Presenter describePresenter) {
+    public void loadDescribe(final MvpContract.DefaultMainPresenter describePresenter) {
         mCompositeDisposable.add(mApiService.requestDescribe()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -215,21 +215,6 @@ public class MainModel implements MvpContract.Model {
 
     private void setFields(List<Field> results) {
         this.fields = results;
-    }
-
-    @Override
-    public List<Field> getFields() {
-        return fields;
-    }
-
-    @Override
-    public void addData(MvpContract.Presenter mainPresenter) {
-
-    }
-
-    @Override
-    public void saveDataToDB(List<Field> fields, List<Map<String, String>> mapReadyTODB, DBPresenter dbPresenter, boolean b) {
-
     }
 
 }

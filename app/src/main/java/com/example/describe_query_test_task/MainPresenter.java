@@ -8,8 +8,8 @@ import com.example.describe_query_test_task.pojo.Field;
 import java.util.List;
 import java.util.Map;
 
-public class MainPresenter implements MvpContract.Presenter {
-    MvpContract.Model mModel;
+public class MainPresenter implements MvpContract.DefaultMainPresenter {
+    MvpContract.DefaultMainModel mModel;
     MvpContract.View mView;
 
 
@@ -33,33 +33,6 @@ public class MainPresenter implements MvpContract.Presenter {
     @Override
     public void showError() {
         mView.showError();
-    }
-
-
-    @Override
-    public void addData() {
-        mModel.addData(this);
-    }
-
-    @Override
-    public Context getContext() {
-        return mView.getContext();
-    }
-
-    @Override
-    public void setDataToView(List<Map<String, String>> mapReadyFromDB) {
-        mView.hideLoading();
-        mView.displayRecords(mapReadyFromDB);
-        showedListSize = mapReadyFromDB.size();
-
-    }
-
-    int showedListSize;
-
-    @Override
-    public String getShowedRecordsCount() {
-
-        return String.valueOf(showedListSize);
     }
 
     @Override

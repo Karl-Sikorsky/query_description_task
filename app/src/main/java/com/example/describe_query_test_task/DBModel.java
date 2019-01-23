@@ -16,7 +16,7 @@ import static com.example.describe_query_test_task.Constants.SIZE_OF_PORTION;
 import static com.example.describe_query_test_task.Constants.TABLE_NAME;
 
 
-public class DBModel implements MvpContract.Model {
+public class DBModel implements MvpContract.DefaultDbModel {
 
     public List<Field> fields;
 
@@ -30,10 +30,7 @@ public class DBModel implements MvpContract.Model {
 
     }
 
-    @Override
-    public void loadDescribe(MvpContract.Presenter describePresenter) {
 
-    }
 
     @Override
     public List<Field> getFields() {
@@ -41,11 +38,11 @@ public class DBModel implements MvpContract.Model {
     }
 
     @Override
-    public void addData(MvpContract.Presenter presenter) {
+    public void addData(MvpContract.DefaultDbPresenter presenter) {
         getDataFromDB(mapReadyFromDB, presenter);
     }
 
-    public void getDataFromDB(List<Map<String, String>> mapReadyFromDB, MvpContract.Presenter describePresenter) {
+    public void getDataFromDB(List<Map<String, String>> mapReadyFromDB, MvpContract.DefaultDbPresenter describePresenter) {
 
         SQLiteDatabase database = new DBSqliteHelper(describePresenter.getContext(), this).getReadableDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM " + TABLE_NAME + " LIMIT " + SIZE_OF_PORTION + " OFFSET " + describePresenter.getShowedRecordsCount(), null);

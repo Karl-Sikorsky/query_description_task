@@ -34,14 +34,22 @@ public interface MvpContract {
 
         void onDestroy();
 
-        void requestDescribe();
+        void saveDataToDB(List<Field> fields, List<Map<String, String>> mapReadyTODB, boolean b);
 
+    }
+
+    interface DefaultMainPresenter extends Presenter{
+
+        void requestDescribe();
 
         void showError();
 
 
-        void addData();
+    }
 
+    interface DefaultDbPresenter extends Presenter{
+
+        void addData();
 
         Context getContext();
 
@@ -49,24 +57,26 @@ public interface MvpContract {
 
         String getShowedRecordsCount();
 
-        void saveDataToDB(List<Field> fields, List<Map<String, String>> mapReadyTODB, boolean b);
+
     }
 
     interface Model {
 
-
         void onDestroy();
 
-
-        void loadDescribe(Presenter describePresenter);
-
+    }
+    interface DefaultDbModel extends Model{
 
         List<Field> getFields();
 
-        void addData(Presenter presenter);
-
+        void addData(DefaultDbPresenter presenter);
 
         void saveDataToDB(List<Field> fields, List<Map<String, String>> mapReadyTODB, DBPresenter dbPresenter, boolean b);
+    }
+    interface DefaultMainModel extends Model{
+
+        void loadDescribe(DefaultMainPresenter describePresenter);
+
     }
 
 }

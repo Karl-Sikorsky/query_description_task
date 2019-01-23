@@ -8,9 +8,9 @@ import com.example.describe_query_test_task.pojo.Field;
 import java.util.List;
 import java.util.Map;
 
-public class DBPresenter implements MvpContract.Presenter {
+public class DBPresenter implements MvpContract.DefaultDbPresenter {
     MvpContract.View mView;
-    MvpContract.Model mModel;
+    MvpContract.DefaultDbModel mModel;
 
     public DBPresenter(MvpContract.View activity) {
         this.mView = activity;
@@ -22,15 +22,7 @@ public class DBPresenter implements MvpContract.Presenter {
 mModel.onDestroy();
     }
 
-    @Override
-    public void requestDescribe() {
 
-    }
-
-    @Override
-    public void showError() {
-
-    }
 
     @Override
     public void addData() {

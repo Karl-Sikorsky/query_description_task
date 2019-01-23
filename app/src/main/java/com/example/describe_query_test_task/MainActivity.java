@@ -19,7 +19,8 @@ import static com.example.describe_query_test_task.Constants.SIZE_OF_PORTION;
 
 public class MainActivity extends AppCompatActivity implements MvpContract.MainView {
 
-    private MvpContract.Presenter mPresenter, dbPresenter;
+    private MvpContract.DefaultMainPresenter mPresenter;
+    private MvpContract.DefaultDbPresenter dbPresenter;
 
     RecyclerView rv;
     ProgressDialog dialog;

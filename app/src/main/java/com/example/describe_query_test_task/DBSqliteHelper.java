@@ -10,9 +10,9 @@ public class DBSqliteHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "accounts_database";
-    MvpContract.Model mModel;
+    MvpContract.DefaultDbModel mModel;
 
-    public DBSqliteHelper(Context context, MvpContract.Model mModel) {
+    public DBSqliteHelper(Context context, MvpContract.DefaultDbModel mModel) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.mModel = mModel;
     }
